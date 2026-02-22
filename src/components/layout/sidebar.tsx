@@ -42,9 +42,9 @@ export function Sidebar() {
   }
 
   return (
-    <div className="flex h-full w-64 flex-col border-r border-[#e5dfda] bg-white">
+    <div className="flex h-full w-64 flex-col border-r border-border bg-white">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-3 px-6">
+      <div className="flex h-14 items-center gap-3 px-6">
         <Image
           src="/deepseek-logo.png"
           alt="DeepSeek"
@@ -62,7 +62,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <Separator className="bg-[#e5dfda]" />
+      <Separator />
 
       {/* Navigation */}
       <ScrollArea className="flex-1 px-3 py-4">
@@ -75,7 +75,7 @@ export function Sidebar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                  "group flex items-center gap-3 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                   isActive
                     ? "bg-[#f4f1ee] text-[#1a1615]"
                     : "text-[#757170] hover:bg-[#f4f1ee] hover:text-[#1a1615]"
@@ -96,7 +96,7 @@ export function Sidebar() {
         </nav>
       </ScrollArea>
 
-      <Separator className="bg-[#e5dfda]" />
+      <Separator />
 
       {/* Sign out */}
       <div className="p-3">

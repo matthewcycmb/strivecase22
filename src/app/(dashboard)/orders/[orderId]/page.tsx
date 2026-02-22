@@ -84,23 +84,23 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
 
       {/* Order Summary */}
       <div className="mb-6 grid gap-4 md:grid-cols-3">
-        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+        <Card className="border bg-white shadow-sm p-4">
           <p className="text-sm text-[#757170]">Total Amount</p>
           <p className="text-2xl font-bold text-[#1a1615]">${order.total_amount?.toLocaleString()}</p>
         </Card>
-        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+        <Card className="border bg-white shadow-sm p-4">
           <p className="text-sm text-[#757170]">Quantity</p>
           <p className="text-2xl font-bold text-[#1a1615]">{order.quantity} units</p>
           <p className="text-xs text-[#757170]">${order.unit_price}/unit</p>
         </Card>
-        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+        <Card className="border bg-white shadow-sm p-4">
           <p className="text-sm text-[#757170]">Escrow</p>
           <p className="text-2xl font-bold text-[#1a1615] capitalize">{order.escrow_status?.replace(/_/g, " ")}</p>
         </Card>
       </div>
 
       {/* Timeline */}
-      <Card className="mb-6 border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-6">
+      <Card className="mb-6 border bg-white shadow-sm p-6">
         <h2 className="mb-4 text-lg font-semibold text-[#1a1615]">Order Timeline</h2>
         <div className="space-y-0">
           {order.timeline && order.timeline.map((event, i) => (
@@ -155,9 +155,9 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
 
       {/* Shipping Info */}
       {order.shipping_carrier && (
-        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+        <Card className="border bg-white shadow-sm p-4">
           <h3 className="mb-2 font-semibold text-[#1a1615]">Shipping Details</h3>
-          <Separator className="mb-3 bg-[#e5dfda]" />
+          <Separator className="mb-3" />
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-[#757170]">Carrier</span>

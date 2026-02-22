@@ -100,7 +100,7 @@ export default function QuoteRequestPage({
 
   return (
     <div className="min-h-screen bg-[#f9f8f8]">
-      <header className="border-b border-[#e5dfda] bg-white px-6 py-4">
+      <header className="border-b border-border bg-white px-6 py-4">
         <div className="mx-auto max-w-2xl">
           <a href={`/matching/${briefId}`} className="text-sm text-[#757170] hover:text-[#1a1615]">
             &larr; Back to Matches
@@ -112,7 +112,7 @@ export default function QuoteRequestPage({
       <main className="mx-auto max-w-2xl space-y-6 p-6">
         {/* Brief Summary with Mockup */}
         {brief && (
-          <Card className="overflow-hidden border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f]">
+          <Card className="overflow-hidden border bg-white shadow-sm">
             {brief.ai_renderings?.length > 0 && (
               <div className="relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -143,7 +143,7 @@ export default function QuoteRequestPage({
 
         {/* Manufacturer Info */}
         {manufacturer && (
-          <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+          <Card className="border bg-white shadow-sm p-4">
             <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-[#757170]">Manufacturer</h3>
             <div className="flex items-center gap-2">
               <p className="font-medium text-[#1a1615]">{manufacturer.business_name}</p>
@@ -190,7 +190,7 @@ export default function QuoteRequestPage({
                 "flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all",
                 orderType === "sample"
                   ? "border-[#156cc2] bg-[#156cc2]/10"
-                  : "border-[#e5dfda] bg-white hover:border-[#e5dfda]"
+                  : "border-border bg-white hover:border-border"
               )}
             >
               <Package className={cn("h-6 w-6", orderType === "sample" ? "text-[#156cc2]" : "text-[#757170]")} />
@@ -210,7 +210,7 @@ export default function QuoteRequestPage({
                 "flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all",
                 orderType === "bulk"
                   ? "border-[#156cc2] bg-[#156cc2]/10"
-                  : "border-[#e5dfda] bg-white hover:border-[#e5dfda]"
+                  : "border-border bg-white hover:border-border"
               )}
             >
               <Boxes className={cn("h-6 w-6", orderType === "bulk" ? "text-[#156cc2]" : "text-[#757170]")} />
@@ -248,7 +248,7 @@ export default function QuoteRequestPage({
               min={1}
               max={orderType === "sample" ? 20 : undefined}
               required
-              className="border-[#e5dfda] bg-white text-[#1a1615]"
+              className="border-border bg-white text-[#1a1615]"
             />
             <p className="mt-1 text-xs text-[#757170]">
               {orderType === "sample"
@@ -267,7 +267,7 @@ export default function QuoteRequestPage({
               value={targetPrice}
               onChange={(e) => setTargetPrice(e.target.value)}
               placeholder="e.g., 5.00"
-              className="border-[#e5dfda] bg-white text-[#1a1615] placeholder:text-[#757170]"
+              className="border-border bg-white text-[#1a1615] placeholder:text-[#757170]"
             />
           </div>
 
@@ -283,7 +283,7 @@ export default function QuoteRequestPage({
                   ? "Any specific details for the sample — colors, materials to test, finish options..."
                   : "Any specific requirements, packaging needs, or questions..."
               }
-              className="border-[#e5dfda] bg-white text-[#1a1615] placeholder:text-[#757170]"
+              className="border-border bg-white text-[#1a1615] placeholder:text-[#757170]"
               rows={4}
             />
           </div>

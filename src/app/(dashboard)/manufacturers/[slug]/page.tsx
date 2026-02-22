@@ -72,7 +72,7 @@ export default function ManufacturerProfilePage({ params }: { params: Promise<{ 
       </Button>
 
       {/* Header */}
-      <div className="mb-6 rounded-xl border border-[#e5dfda] bg-white p-6 shadow-[0_4px_50px_#614a440f]">
+      <div className="mb-6 rounded-lg border bg-white p-6 shadow-sm">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ export default function ManufacturerProfilePage({ params }: { params: Promise<{ 
           </div>
         </div>
 
-        <Separator className="my-4 bg-[#e5dfda]" />
+        <Separator className="my-4" />
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="flex items-center gap-2">
@@ -154,7 +154,7 @@ export default function ManufacturerProfilePage({ params }: { params: Promise<{ 
           <h2 className="mb-3 text-lg font-semibold text-[#1a1615]">Portfolio</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {portfolio.map((item) => (
-              <Card key={item.id} className="overflow-hidden border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f]">
+              <Card key={item.id} className="overflow-hidden border bg-white shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={item.image_url} alt={item.title || ""} className="aspect-[4/3] w-full object-cover" />
                 <div className="p-3">
@@ -173,7 +173,7 @@ export default function ManufacturerProfilePage({ params }: { params: Promise<{ 
           <h2 className="mb-3 text-lg font-semibold text-[#1a1615]">Reviews</h2>
           <div className="space-y-3">
             {reviews.map((review) => (
-              <Card key={review.id} className="border-[#e5dfda] bg-white p-4 shadow-[0_4px_50px_#614a440f]">
+              <Card key={review.id} className="border bg-white p-4 shadow-sm">
                 <div className="mb-2 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-[#1a1615]">{review.reviewer_name || "Anonymous"}</span>

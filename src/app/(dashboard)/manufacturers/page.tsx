@@ -56,7 +56,7 @@ function ManufacturersContent() {
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && fetchManufacturers()}
             placeholder="Search manufacturers..."
-            className="border-[#e5dfda] bg-white pl-9 text-[#1a1615] placeholder:text-[#757170]"
+            className="border-border bg-white pl-9 text-[#1a1615] placeholder:text-[#757170]"
           />
         </div>
         <div className="flex gap-2">
@@ -66,7 +66,7 @@ function ManufacturersContent() {
               variant={category === cat.value ? "default" : "outline"}
               size="sm"
               onClick={() => setCategory(cat.value)}
-              className={category === cat.value ? "bg-[#1a1615] text-white hover:bg-[#453f3d]" : "border-[#e5dfda] text-[#757170] hover:bg-[#f4f1ee]"}
+              className={category === cat.value ? "bg-[#1a1615] text-white hover:bg-[#453f3d]" : "border-border text-[#757170] hover:bg-[#f4f1ee]"}
             >
               {cat.label}
             </Button>
@@ -87,7 +87,7 @@ function ManufacturersContent() {
             <Card
               key={mfg.id}
               onClick={() => router.push(`/manufacturers/${mfg.slug}`)}
-              className="cursor-pointer border-[#e5dfda] bg-white p-5 shadow-[0_4px_50px_#614a440f] transition-colors hover:border-[#e5dfda] hover:bg-[#f4f1ee]"
+              className="cursor-pointer border bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
             >
               <div className="mb-3 flex items-start justify-between">
                 <div>

@@ -5,7 +5,16 @@ import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Plus, FolderOpen } from "lucide-react";
+import { Plus, FolderOpen, Trash2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
 import { BRIEF_STATUSES } from "@/lib/constants";
 import type { ProductBrief } from "@/lib/types";
 
@@ -13,6 +22,21 @@ export default function ProjectsPage() {
   const router = useRouter();
   const [briefs, setBriefs] = useState<ProductBrief[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const handleDelete = async () => {
+    if (!deletingId) return;
+    try {
+      const res = await fetch(`/api/briefs/${deletingId}`, { method: "DELETE" });
+      if (!res.ok) throw new Error();
+      setBriefs((prev) => prev.filter((b) => b.id !== deletingId));
+      toast.success("Project deleted");
+    } catch {
+      toast.error("Failed to delete project");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   useEffect(() => {
     fetch("/api/briefs")
@@ -86,15 +110,28 @@ export default function ProjectsPage() {
               <Card
                 key={brief.id}
                 onClick={() => router.push(getHref(brief))}
-                className="cursor-pointer border-[#e5dfda] bg-white p-5 shadow-[0_4px_50px_#614a440f] transition-all hover:shadow-[0_8px_60px_#614a4420]"
+                className="cursor-pointer border bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <Badge variant="secondary" className={`text-xs ${statusInfo.color}`}>
                     {statusInfo.label}
                   </Badge>
-                  <span className="text-xs text-[#757170]">
-                    {new Date(brief.updated_at).toLocaleDateString()}
-                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs text-[#757170]">
+                      {new Date(brief.updated_at).toLocaleDateString()}
+                    </span>
+                    {brief.status !== "ordered" && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDeletingId(brief.id);
+                        }}
+                        className="rounded p-1 text-[#b5afab] transition-colors hover:bg-red-50 hover:text-red-500"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <h3 className="mb-1 font-semibold text-[#1a1615]">
                   {brief.title || "Untitled Idea"}
@@ -117,6 +154,25 @@ export default function ProjectsPage() {
           })}
         </div>
       )}
+
+      <Dialog open={!!deletingId} onOpenChange={(open) => !open && setDeletingId(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete project?</DialogTitle>
+            <DialogDescription>
+              This will permanently delete this idea and any associated matches and quotes.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeletingId(null)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleDelete}>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

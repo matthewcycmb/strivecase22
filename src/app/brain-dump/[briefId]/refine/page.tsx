@@ -155,7 +155,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     msg.role === "user"
                       ? "bg-[#156cc2] text-white"
-                      : "bg-white text-[#453f3d] border border-[#e5dfda] shadow-sm"
+                      : "bg-white text-[#453f3d] border shadow-sm"
                   }`}
                 >
                   {msg.role === "assistant" && (
@@ -168,7 +168,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
 
             {streaming && messages[messages.length - 1]?.content === "" && (
               <div className="flex justify-start">
-                <div className="flex items-center gap-2 rounded-2xl border border-[#e5dfda] bg-white px-4 py-3 shadow-sm">
+                <div className="flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 shadow-sm">
                   <Loader2 className="h-4 w-4 animate-spin text-[#156cc2]" />
                   <span className="text-sm text-[#757170]">Thinking...</span>
                 </div>
@@ -178,7 +178,22 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
         </ScrollArea>
 
         {/* Input Bar */}
-        <div className="border-t border-[#e5dfda] bg-white p-4">
+        <div className="border-t border-border bg-white p-4">
+          {/* Suggestion Chips */}
+          {messages.length >= 1 && messages.length < 8 && !streaming && (
+            <div className="mx-auto mb-2 flex max-w-2xl flex-wrap gap-2">
+              {["Make it eco-friendly", "Reduce unit cost", "Lower the MOQ", "Add packaging details", "Use premium materials"].map((chip) => (
+                <Badge
+                  key={chip}
+                  variant="secondary"
+                  className="cursor-pointer bg-[#f4f1ee] text-xs text-[#453f3d] transition-colors hover:bg-[#156cc2]/10 hover:text-[#156cc2]"
+                  onClick={() => sendMessage(chip)}
+                >
+                  {chip}
+                </Badge>
+              ))}
+            </div>
+          )}
           <div className="mx-auto flex max-w-2xl gap-2">
             <Input
               ref={inputRef}
@@ -187,7 +202,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage(input)}
               placeholder="Type your response..."
               disabled={streaming}
-              className="border-[#e5dfda] bg-[#f9f8f8] text-[#1a1615] placeholder:text-[#757170]"
+              className="border-border bg-[#f9f8f8] text-[#1a1615] placeholder:text-[#757170]"
             />
             <Button
               onClick={() => sendMessage(input)}
@@ -210,7 +225,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
       </div>
 
       {/* Right Sidebar: Brief State */}
-      <div className="hidden w-80 overflow-y-auto border-l border-[#e5dfda] bg-white p-4 lg:block">
+      <div className="hidden w-80 overflow-y-auto border-l border-border bg-white p-4 lg:block">
         <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#757170]">
           Current Brief
         </h3>
@@ -235,7 +250,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
             </div>
 
             {brief.specifications && Object.keys(brief.specifications).length > 0 && (
-              <Card className="border-[#e5dfda] bg-[#f9f8f8] p-3">
+              <Card className="border bg-[#f9f8f8] p-3">
                 <p className="mb-2 text-xs font-semibold text-[#757170]">Specifications</p>
                 {Object.entries(brief.specifications).map(([key, value]) => (
                   <div key={key} className="mb-1">

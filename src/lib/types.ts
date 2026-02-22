@@ -84,6 +84,7 @@ export interface ManufacturerMatch {
     certification_relevance: number;
     lead_time_fit: number;
     summary: string;
+    risk_summary?: string;
   };
   rank: number;
   manufacturer?: Manufacturer;

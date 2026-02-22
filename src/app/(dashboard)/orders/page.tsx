@@ -69,7 +69,7 @@ export default function OrdersPage() {
               <Card
                 key={order.id}
                 onClick={() => router.push(`/orders/${order.id}`)}
-                className="cursor-pointer border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-5 transition-colors hover:border-[#e5dfda] hover:bg-[#f4f1ee]"
+                className="cursor-pointer border bg-white shadow-sm p-5 transition-shadow hover:shadow-md"
               >
                 <div className="flex items-start justify-between">
                   <div>

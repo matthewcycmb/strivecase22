@@ -73,7 +73,7 @@ export function MobileNav() {
           </SheetTitle>
         </SheetHeader>
 
-        <Separator className="bg-[#e5dfda]" />
+        <Separator />
 
         <ScrollArea className="flex-1 px-3 py-4">
           <nav className="flex flex-col gap-1">
@@ -86,7 +86,7 @@ export function MobileNav() {
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    "group flex items-center gap-3 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                     isActive
                       ? "bg-[#f4f1ee] text-[#1a1615]"
                       : "text-[#757170] hover:bg-[#f4f1ee] hover:text-[#1a1615]"
@@ -107,7 +107,7 @@ export function MobileNav() {
           </nav>
         </ScrollArea>
 
-        <Separator className="bg-[#e5dfda]" />
+        <Separator />
 
         <div className="p-3">
           <Button

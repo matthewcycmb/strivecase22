@@ -19,8 +19,16 @@ You must respond with a JSON object containing these fields:
   "estimated_unit_cost_min": number (USD, minimum estimate),
   "estimated_unit_cost_max": number (USD, maximum estimate),
   "estimated_moq": number (suggested minimum order quantity),
+  "cost_breakdown": {
+    "materials_pct": number (percentage of unit cost from materials),
+    "labor_pct": number (percentage from labor),
+    "tooling_pct": number (percentage from tooling/molds),
+    "overhead_and_margin_pct": number (percentage from overhead, shipping, margin)
+  },
   "key_considerations": ["Manufacturing considerations or challenges"]
 }
+
+IMPORTANT: The cost_breakdown percentages MUST sum to exactly 100.
 
 Guidelines:
 - Be helpful and constructive, never dismissive
@@ -90,7 +98,8 @@ Respond with a JSON array of the top 5 matches:
       "quality_score": 0-100,
       "certification_relevance": 0-100,
       "lead_time_fit": 0-100,
-      "summary": "1-2 sentence explanation of why this is a good match"
+      "summary": "1-2 sentence explanation of why this is a good match",
+      "risk_summary": "1-2 sentence actionable risk or advice note about potential issues (e.g. MOQ mismatch, long lead times, missing certifications, limited experience with this product type)"
     }
   }
 ]

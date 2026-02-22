@@ -137,22 +137,22 @@ function PlatformOverview() {
             {
               step: "01",
               icon: FileText,
-              title: "Brain Dump",
-              desc: "Describe your product idea in plain language. Our AI turns it into a detailed product brief with specs, cost estimates, and a mockup.",
+              title: "Describe your idea",
+              desc: "Brain dump your product concept in plain language. Our AI turns it into a detailed brief with specs, costs, and a mockup.",
               color: "bg-blue-50 text-blue-600",
             },
             {
               step: "02",
               icon: Factory,
-              title: "Match Manufacturers",
-              desc: "AI scores and ranks the best-fit manufacturers based on your brief — category, MOQ, quality, certifications, and lead time.",
+              title: "AI finds your manufacturer",
+              desc: "We analyze your specs and match you with the best-fit factory based on category, quality, and capacity.",
               color: "bg-green-50 text-green-600",
             },
             {
               step: "03",
               icon: MessageSquareQuote,
-              title: "Get Quotes & Order",
-              desc: "Request sample or bulk quotes, compare pricing, accept the best offer, and track your order from production to delivery.",
+              title: "Request a quote instantly",
+              desc: "Send a sample quote to your matched manufacturer in one click, then track your order to delivery.",
               color: "bg-orange-50 text-orange-600",
             },
           ].map((item) => (

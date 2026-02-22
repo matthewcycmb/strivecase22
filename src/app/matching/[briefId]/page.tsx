@@ -17,6 +17,7 @@ import {
   Factory,
   MessageSquareQuote,
   Check,
+  AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -82,7 +83,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
   return (
     <div className="min-h-screen bg-[#f9f8f8]">
       {/* Step Bar */}
-      <div className="border-b border-[#e5dfda] bg-white px-6 py-4">
+      <div className="border-b border-border bg-white px-6 py-4">
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           {STEPS.map((step, i) => {
             const currentStep = 1;
@@ -128,7 +129,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
         </div>
       </div>
 
-      <header className="border-b border-[#e5dfda] px-6 py-4">
+      <header className="border-b border-border px-6 py-4">
         <div className="mx-auto max-w-4xl">
           <h1 className="text-2xl font-bold text-[#1a1615]">Manufacturer Matches</h1>
           <p className="text-[#757170]">
@@ -144,7 +145,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
           const reasoning = match.reasoning;
 
           return (
-            <Card key={match.manufacturer_id} className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-6">
+            <Card key={match.manufacturer_id} className="border bg-white shadow-sm p-6">
               <div className="flex items-start gap-6">
                 {/* Match Score */}
                 <div className="flex shrink-0 flex-col items-center">
@@ -210,6 +211,13 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
 
                   {reasoning?.summary && (
                     <p className="mb-4 text-sm text-[#757170]">{reasoning.summary}</p>
+                  )}
+
+                  {reasoning?.risk_summary && (
+                    <div className="mb-4 flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3">
+                      <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+                      <p className="text-sm text-amber-800">{reasoning.risk_summary}</p>
+                    </div>
                   )}
 
                   <div className="flex gap-2">
