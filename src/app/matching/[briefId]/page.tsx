@@ -72,17 +72,17 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
   if (loading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4">
-        <Loader2 className="h-12 w-12 animate-spin text-blue-400" />
-        <h2 className="text-xl font-semibold text-white">Finding Your Best Matches</h2>
-        <p className="text-zinc-400">Our AI is analyzing manufacturers for your product...</p>
+        <Loader2 className="h-12 w-12 animate-spin text-[#156cc2]" />
+        <h2 className="text-xl font-semibold text-[#1a1615]">Finding Your Best Matches</h2>
+        <p className="text-[#757170]">Our AI is analyzing manufacturers for your product...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#f9f8f8]">
       {/* Step Bar */}
-      <div className="border-b border-white/10 bg-white/[0.02] px-6 py-4">
+      <div className="border-b border-[#e5dfda] bg-white px-6 py-4">
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           {STEPS.map((step, i) => {
             const currentStep = 1;
@@ -93,10 +93,10 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                     className={cn(
                       "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition-colors",
                       i < currentStep
-                        ? "bg-green-500 text-white"
+                        ? "bg-[#0ea158] text-white"
                         : i === currentStep
-                          ? "bg-blue-500 text-white"
-                          : "bg-white/10 text-zinc-500"
+                          ? "bg-[#156cc2] text-white"
+                          : "bg-[#f4f1ee] text-[#757170]"
                     )}
                   >
                     {i < currentStep ? (
@@ -108,7 +108,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                   <span
                     className={cn(
                       "text-sm font-medium",
-                      i <= currentStep ? "text-white" : "text-zinc-500"
+                      i <= currentStep ? "text-[#1a1615]" : "text-[#757170]"
                     )}
                   >
                     {step.label}
@@ -118,7 +118,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                   <div
                     className={cn(
                       "mx-4 h-px w-16 sm:w-24",
-                      i < currentStep ? "bg-green-500" : "bg-white/10"
+                      i < currentStep ? "bg-[#0ea158]" : "bg-[#e5dfda]"
                     )}
                   />
                 )}
@@ -128,10 +128,10 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
         </div>
       </div>
 
-      <header className="border-b border-white/10 px-6 py-4">
+      <header className="border-b border-[#e5dfda] px-6 py-4">
         <div className="mx-auto max-w-4xl">
-          <h1 className="text-2xl font-bold text-white">Manufacturer Matches</h1>
-          <p className="text-zinc-400">
+          <h1 className="text-2xl font-bold text-[#1a1615]">Manufacturer Matches</h1>
+          <p className="text-[#757170]">
             {matches.length} manufacturers matched for your product — pick one to request a quote
           </p>
         </div>
@@ -144,26 +144,26 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
           const reasoning = match.reasoning;
 
           return (
-            <Card key={match.manufacturer_id} className="border-white/10 bg-white/5 p-6">
+            <Card key={match.manufacturer_id} className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-6">
               <div className="flex items-start gap-6">
                 {/* Match Score */}
                 <div className="flex shrink-0 flex-col items-center">
                   <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-blue-500">
-                    <span className="text-2xl font-bold text-white">{match.match_score}</span>
+                    <span className="text-2xl font-bold text-[#1a1615]">{match.match_score}</span>
                   </div>
-                  <span className="mt-1 text-xs text-zinc-500">Match Score</span>
+                  <span className="mt-1 text-xs text-[#757170]">Match Score</span>
                 </div>
 
                 {/* Manufacturer Info */}
                 <div className="flex-1">
                   <div className="mb-2 flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-white">{mfg.business_name}</h3>
+                    <h3 className="text-lg font-semibold text-[#1a1615]">{mfg.business_name}</h3>
                     {mfg.verification_status === "verified" && (
                       <CheckCircle className="h-5 w-5 text-blue-400" />
                     )}
                   </div>
 
-                  <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-zinc-400">
+                  <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-[#757170]">
                     <span className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                       {Number(mfg.composite_rating).toFixed(1)}
@@ -199,8 +199,8 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                       ].map((item) => (
                         <div key={item.label}>
                           <div className="mb-1 flex items-center justify-between">
-                            <span className="text-xs text-zinc-500">{item.label}</span>
-                            <span className="text-xs text-zinc-400">{item.value}</span>
+                            <span className="text-xs text-[#757170]">{item.label}</span>
+                            <span className="text-xs text-[#757170]">{item.value}</span>
                           </div>
                           <Progress value={item.value} className="h-1.5" />
                         </div>
@@ -209,12 +209,12 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                   )}
 
                   {reasoning?.summary && (
-                    <p className="mb-4 text-sm text-zinc-400">{reasoning.summary}</p>
+                    <p className="mb-4 text-sm text-[#757170]">{reasoning.summary}</p>
                   )}
 
                   <div className="flex gap-2">
                     {mfg.certifications?.map((cert) => (
-                      <Badge key={cert} variant="secondary" className="bg-white/10 text-xs text-zinc-400">
+                      <Badge key={cert} variant="secondary" className="bg-[#f4f1ee] text-xs text-[#757170]">
                         {cert}
                       </Badge>
                     ))}
@@ -225,7 +225,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                 <div className="shrink-0">
                   <Button
                     onClick={() => router.push(`/quote-request/${briefId}/${match.manufacturer_id}`)}
-                    className="gap-2 bg-white text-zinc-900 hover:bg-zinc-200"
+                    className="gap-2 bg-[#1a1615] text-white hover:bg-[#453f3d]"
                   >
                     Request Quote
                     <ArrowRight className="h-4 w-4" />

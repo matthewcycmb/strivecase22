@@ -135,7 +135,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
   if (loading) {
     return (
       <div className="flex h-full items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#757170]" />
       </div>
     );
   }
@@ -154,12 +154,12 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     msg.role === "user"
-                      ? "bg-blue-600 text-white"
-                      : "bg-white/10 text-zinc-300"
+                      ? "bg-[#156cc2] text-white"
+                      : "bg-white text-[#453f3d] border border-[#e5dfda] shadow-sm"
                   }`}
                 >
                   {msg.role === "assistant" && (
-                    <Sparkles className="mb-1 h-4 w-4 text-blue-400" />
+                    <Sparkles className="mb-1 h-4 w-4 text-[#156cc2]" />
                   )}
                   <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
                 </div>
@@ -168,9 +168,9 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
 
             {streaming && messages[messages.length - 1]?.content === "" && (
               <div className="flex justify-start">
-                <div className="flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-3">
-                  <Loader2 className="h-4 w-4 animate-spin text-blue-400" />
-                  <span className="text-sm text-zinc-400">Thinking...</span>
+                <div className="flex items-center gap-2 rounded-2xl border border-[#e5dfda] bg-white px-4 py-3 shadow-sm">
+                  <Loader2 className="h-4 w-4 animate-spin text-[#156cc2]" />
+                  <span className="text-sm text-[#757170]">Thinking...</span>
                 </div>
               </div>
             )}
@@ -178,7 +178,7 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
         </ScrollArea>
 
         {/* Input Bar */}
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-[#e5dfda] bg-white p-4">
           <div className="mx-auto flex max-w-2xl gap-2">
             <Input
               ref={inputRef}
@@ -187,20 +187,20 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage(input)}
               placeholder="Type your response..."
               disabled={streaming}
-              className="border-white/10 bg-white/5 text-white placeholder:text-zinc-600"
+              className="border-[#e5dfda] bg-[#f9f8f8] text-[#1a1615] placeholder:text-[#757170]"
             />
             <Button
               onClick={() => sendMessage(input)}
               disabled={streaming || !input.trim()}
               size="icon"
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-[#156cc2] hover:bg-[#156cc2]/90"
             >
               <Send className="h-4 w-4" />
             </Button>
             <Button
               onClick={handleLockBrief}
               variant="outline"
-              className="gap-2 border-green-500/30 text-green-400 hover:bg-green-500/10"
+              className="gap-2 border-[#0ea158]/30 text-[#0ea158] hover:bg-[#0ea158]/10"
             >
               <Lock className="h-4 w-4" />
               Lock & Match
@@ -210,37 +210,37 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
       </div>
 
       {/* Right Sidebar: Brief State */}
-      <div className="hidden w-80 overflow-y-auto border-l border-white/10 p-4 lg:block">
-        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-400">
+      <div className="hidden w-80 overflow-y-auto border-l border-[#e5dfda] bg-white p-4 lg:block">
+        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#757170]">
           Current Brief
         </h3>
 
         {brief && (
           <div className="space-y-3">
             <div>
-              <p className="text-xs text-zinc-500">Title</p>
-              <p className="text-sm font-medium text-white">{brief.title || "—"}</p>
+              <p className="text-xs text-[#757170]">Title</p>
+              <p className="text-sm font-medium text-[#1a1615]">{brief.title || "—"}</p>
             </div>
 
             <div>
-              <p className="text-xs text-zinc-500">Category</p>
-              <Badge variant="secondary" className="bg-white/10 text-xs">
+              <p className="text-xs text-[#757170]">Category</p>
+              <Badge variant="secondary" className="bg-[#f4f1ee] text-xs">
                 {brief.category?.replace(/_/g, " ") || "—"}
               </Badge>
             </div>
 
             <div>
-              <p className="text-xs text-zinc-500">Description</p>
-              <p className="text-xs text-zinc-300">{brief.description || "—"}</p>
+              <p className="text-xs text-[#757170]">Description</p>
+              <p className="text-xs text-[#453f3d]">{brief.description || "—"}</p>
             </div>
 
             {brief.specifications && Object.keys(brief.specifications).length > 0 && (
-              <Card className="border-white/10 bg-white/5 p-3">
-                <p className="mb-2 text-xs font-semibold text-zinc-400">Specifications</p>
+              <Card className="border-[#e5dfda] bg-[#f9f8f8] p-3">
+                <p className="mb-2 text-xs font-semibold text-[#757170]">Specifications</p>
                 {Object.entries(brief.specifications).map(([key, value]) => (
                   <div key={key} className="mb-1">
-                    <span className="text-xs text-zinc-500">{key}: </span>
-                    <span className="text-xs text-zinc-300">
+                    <span className="text-xs text-[#757170]">{key}: </span>
+                    <span className="text-xs text-[#453f3d]">
                       {Array.isArray(value) ? value.join(", ") : String(value)}
                     </span>
                   </div>
@@ -249,8 +249,8 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
             )}
 
             <div>
-              <p className="text-xs text-zinc-500">Estimated Cost</p>
-              <p className="text-sm font-medium text-white">
+              <p className="text-xs text-[#757170]">Estimated Cost</p>
+              <p className="text-sm font-medium text-[#1a1615]">
                 {brief.estimated_unit_cost_min && brief.estimated_unit_cost_max
                   ? `$${brief.estimated_unit_cost_min} – $${brief.estimated_unit_cost_max}`
                   : "—"}
@@ -258,8 +258,8 @@ export default function RefinementPage({ params }: { params: Promise<{ briefId: 
             </div>
 
             <div>
-              <p className="text-xs text-zinc-500">Suggested MOQ</p>
-              <p className="text-sm font-medium text-white">
+              <p className="text-xs text-[#757170]">Suggested MOQ</p>
+              <p className="text-sm font-medium text-[#1a1615]">
                 {brief.estimated_moq ? `${brief.estimated_moq} units` : "—"}
               </p>
             </div>

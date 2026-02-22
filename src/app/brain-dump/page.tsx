@@ -124,7 +124,7 @@ export default function BrainDumpPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Step Bar */}
-      <div className="border-b border-white/10 bg-white/[0.02] px-6 py-4">
+      <div className="border-b border-[#e5dfda] bg-white px-6 py-4">
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           {STEPS.map((step, i) => (
             <div key={step.label} className="flex items-center gap-3">
@@ -133,10 +133,10 @@ export default function BrainDumpPage() {
                   className={cn(
                     "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition-colors",
                     i < currentStep
-                      ? "bg-green-500 text-white"
+                      ? "bg-[#0ea158] text-white"
                       : i === currentStep
-                        ? "bg-blue-500 text-white"
-                        : "bg-white/10 text-zinc-500"
+                        ? "bg-[#156cc2] text-white"
+                        : "bg-[#f4f1ee] text-[#757170]"
                   )}
                 >
                   {i < currentStep ? (
@@ -148,7 +148,7 @@ export default function BrainDumpPage() {
                 <span
                   className={cn(
                     "text-sm font-medium",
-                    i <= currentStep ? "text-white" : "text-zinc-500"
+                    i <= currentStep ? "text-[#1a1615]" : "text-[#757170]"
                   )}
                 >
                   {step.label}
@@ -158,7 +158,7 @@ export default function BrainDumpPage() {
                 <div
                   className={cn(
                     "mx-4 h-px w-16 sm:w-24",
-                    i < currentStep ? "bg-green-500" : "bg-white/10"
+                    i < currentStep ? "bg-[#0ea158]" : "bg-[#e5dfda]"
                   )}
                 />
               )}
@@ -170,12 +170,12 @@ export default function BrainDumpPage() {
       {/* Main Content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Left: Input Area */}
-        <div className="flex w-1/2 flex-col border-r border-white/10 p-6">
+        <div className="flex w-1/2 flex-col border-r border-[#e5dfda] bg-white p-6">
           <div className="mb-4">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-[#1a1615]">
               Describe Your Product Idea
             </h2>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-[#757170]">
               Tell us everything — what it is, who it&apos;s for, what it looks
               like. Be as detailed or vague as you want.
             </p>
@@ -185,12 +185,12 @@ export default function BrainDumpPage() {
             value={rawText}
             onChange={(e) => setRawText(e.target.value)}
             placeholder="I want to create a biodegradable phone case made from bamboo fiber. It should be slim, come in earth-tone colors, and have a minimalist design with maybe a small logo embossed on the back. Target price around $15-20 retail..."
-            className="mb-4 flex-1 resize-none border-white/10 bg-white/5 text-base text-white placeholder:text-zinc-600"
+            className="mb-4 flex-1 resize-none border-[#e5dfda] bg-[#f9f8f8] text-base text-[#1a1615] placeholder:text-[#757170]"
           />
 
           {/* Image Upload */}
           <div className="mb-4">
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-white/20 p-3 text-sm text-zinc-400 transition-colors hover:border-white/40 hover:text-zinc-300">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-[#e5dfda] p-3 text-sm text-[#757170] transition-colors hover:border-[#156cc2] hover:text-[#453f3d]">
               <Upload className="h-4 w-4" />
               Upload reference images
               <input
@@ -230,7 +230,7 @@ export default function BrainDumpPage() {
             <Button
               onClick={handleAnalyze}
               disabled={analyzing || !rawText.trim()}
-              className="gap-2 bg-white text-zinc-900 hover:bg-zinc-200"
+              className="gap-2 bg-[#1a1615] text-white hover:bg-[#453f3d]"
             >
               {analyzing ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -247,16 +247,16 @@ export default function BrainDumpPage() {
         </div>
 
         {/* Right: Brief Preview */}
-        <div className="flex w-1/2 flex-col overflow-y-auto p-6">
-          <h2 className="mb-4 text-xl font-semibold text-white">
+        <div className="flex w-1/2 flex-col overflow-y-auto bg-[#f9f8f8] p-6">
+          <h2 className="mb-4 text-xl font-semibold text-[#1a1615]">
             Product Brief Preview
           </h2>
 
           {!analysis && !analyzing && (
             <div className="flex flex-1 items-center justify-center">
               <div className="text-center">
-                <Sparkles className="mx-auto mb-3 h-12 w-12 text-zinc-700" />
-                <p className="text-zinc-500">
+                <Sparkles className="mx-auto mb-3 h-12 w-12 text-[#e5dfda]" />
+                <p className="text-[#757170]">
                   Describe your idea on the left and click &quot;Analyze
                   Idea&quot; to generate your product brief.
                 </p>
@@ -266,24 +266,24 @@ export default function BrainDumpPage() {
 
           {analyzing && (
             <div className="space-y-4">
-              <Skeleton className="h-8 w-3/4" />
-              <Skeleton className="h-4 w-1/3" />
-              <Skeleton className="aspect-square w-full rounded-xl" />
-              <Skeleton className="h-20 w-full" />
-              <Skeleton className="h-32 w-full" />
-              <Skeleton className="h-16 w-full" />
+              <Skeleton className="h-8 w-3/4 bg-[#f4f1ee]" />
+              <Skeleton className="h-4 w-1/3 bg-[#f4f1ee]" />
+              <Skeleton className="aspect-square w-full rounded-xl bg-[#f4f1ee]" />
+              <Skeleton className="h-20 w-full bg-[#f4f1ee]" />
+              <Skeleton className="h-32 w-full bg-[#f4f1ee]" />
+              <Skeleton className="h-16 w-full bg-[#f4f1ee]" />
             </div>
           )}
 
           {analysis && !analyzing && (
             <div className="space-y-4">
               <div>
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-2xl font-bold text-[#1a1615]">
                   {analysis.title}
                 </h3>
                 <Badge
                   variant="secondary"
-                  className="mt-1 bg-blue-500/20 text-blue-400"
+                  className="mt-1 bg-[#156cc2]/10 text-[#156cc2]"
                 >
                   {analysis.category?.replace(/_/g, " ")}
                 </Badge>
@@ -291,7 +291,7 @@ export default function BrainDumpPage() {
 
               {/* AI Mockup */}
               {mockupUrl && (
-                <Card className="overflow-hidden border-white/10 bg-white/5">
+                <Card className="overflow-hidden border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f]">
                   <div className="relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -308,64 +308,64 @@ export default function BrainDumpPage() {
                 </Card>
               )}
 
-              <Card className="border-white/10 bg-white/5 p-4">
-                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-zinc-400">
+              <Card className="border-[#e5dfda] bg-white p-4 shadow-[0_4px_50px_#614a440f]">
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#757170]">
                   Description
                 </h4>
-                <p className="text-sm text-zinc-300">{analysis.description}</p>
+                <p className="text-sm text-[#453f3d]">{analysis.description}</p>
               </Card>
 
-              <Card className="border-white/10 bg-white/5 p-4">
-                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-zinc-400">
+              <Card className="border-[#e5dfda] bg-white p-4 shadow-[0_4px_50px_#614a440f]">
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#757170]">
                   Target Audience
                 </h4>
-                <p className="text-sm text-zinc-300">
+                <p className="text-sm text-[#453f3d]">
                   {analysis.target_audience}
                 </p>
               </Card>
 
               {analysis.specifications && (
-                <Card className="border-white/10 bg-white/5 p-4">
-                  <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                <Card className="border-[#e5dfda] bg-white p-4 shadow-[0_4px_50px_#614a440f]">
+                  <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#757170]">
                     Specifications
                   </h4>
                   <div className="space-y-2 text-sm">
                     {analysis.specifications.materials?.length > 0 && (
                       <div>
-                        <span className="text-zinc-500">Materials: </span>
-                        <span className="text-zinc-300">
+                        <span className="text-[#757170]">Materials: </span>
+                        <span className="text-[#453f3d]">
                           {analysis.specifications.materials.join(", ")}
                         </span>
                       </div>
                     )}
                     {analysis.specifications.dimensions && (
                       <div>
-                        <span className="text-zinc-500">Dimensions: </span>
-                        <span className="text-zinc-300">
+                        <span className="text-[#757170]">Dimensions: </span>
+                        <span className="text-[#453f3d]">
                           {analysis.specifications.dimensions}
                         </span>
                       </div>
                     )}
                     {analysis.specifications.colors?.length > 0 && (
                       <div>
-                        <span className="text-zinc-500">Colors: </span>
-                        <span className="text-zinc-300">
+                        <span className="text-[#757170]">Colors: </span>
+                        <span className="text-[#453f3d]">
                           {analysis.specifications.colors.join(", ")}
                         </span>
                       </div>
                     )}
                     {analysis.specifications.features?.length > 0 && (
                       <div>
-                        <span className="text-zinc-500">Features: </span>
-                        <span className="text-zinc-300">
+                        <span className="text-[#757170]">Features: </span>
+                        <span className="text-[#453f3d]">
                           {analysis.specifications.features.join(", ")}
                         </span>
                       </div>
                     )}
                     {analysis.specifications.finish && (
                       <div>
-                        <span className="text-zinc-500">Finish: </span>
-                        <span className="text-zinc-300">
+                        <span className="text-[#757170]">Finish: </span>
+                        <span className="text-[#453f3d]">
                           {analysis.specifications.finish}
                         </span>
                       </div>
@@ -374,31 +374,31 @@ export default function BrainDumpPage() {
                 </Card>
               )}
 
-              <Card className="border-white/10 bg-white/5 p-4">
-                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-zinc-400">
+              <Card className="border-[#e5dfda] bg-white p-4 shadow-[0_4px_50px_#614a440f]">
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#757170]">
                   Estimated Cost
                 </h4>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-2xl font-bold text-[#1a1615]">
                   ${analysis.estimated_unit_cost_min} – $
                   {analysis.estimated_unit_cost_max}
-                  <span className="ml-1 text-sm font-normal text-zinc-500">
+                  <span className="ml-1 text-sm font-normal text-[#757170]">
                     per unit
                   </span>
                 </p>
-                <p className="mt-1 text-sm text-zinc-500">
+                <p className="mt-1 text-sm text-[#757170]">
                   Suggested MOQ: {analysis.estimated_moq} units
                 </p>
               </Card>
 
               {analysis.key_considerations?.length > 0 && (
-                <Card className="border-white/10 bg-yellow-500/5 p-4">
-                  <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-yellow-400">
+                <Card className="border-[#cf8d13]/20 bg-[#cf8d13]/5 p-4">
+                  <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#cf8d13]">
                     Key Considerations
                   </h4>
-                  <ul className="space-y-1 text-sm text-zinc-300">
+                  <ul className="space-y-1 text-sm text-[#453f3d]">
                     {analysis.key_considerations.map((item, i) => (
                       <li key={i} className="flex gap-2">
-                        <span className="text-yellow-400">•</span>
+                        <span className="text-[#cf8d13]">•</span>
                         {item}
                       </li>
                     ))}
@@ -407,13 +407,13 @@ export default function BrainDumpPage() {
               )}
 
               {/* Next Step CTA */}
-              <Card className="border-blue-500/30 bg-blue-500/10 p-5">
+              <Card className="border-[#156cc2]/30 bg-[#156cc2]/5 p-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-white">
+                    <h4 className="font-semibold text-[#1a1615]">
                       Ready to find manufacturers?
                     </h4>
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-[#757170]">
                       Our AI will match your brief with the best-fit
                       manufacturers and show you detailed scores.
                     </p>
@@ -421,7 +421,7 @@ export default function BrainDumpPage() {
                   <Button
                     onClick={handleFindManufacturers}
                     disabled={findingMatches}
-                    className="shrink-0 gap-2 bg-blue-500 text-white hover:bg-blue-600"
+                    className="shrink-0 gap-2 bg-[#156cc2] text-white hover:bg-[#156cc2]/90"
                     size="lg"
                   >
                     {findingMatches ? (

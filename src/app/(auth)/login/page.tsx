@@ -19,7 +19,7 @@ import {
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const redirectTo = searchParams.get("redirect") || "/projects";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +47,7 @@ function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-sm border-border/50 bg-card/80 backdrop-blur-sm">
+    <Card className="w-full max-w-sm border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f]">
       <CardHeader className="text-center">
         <CardTitle className="text-xl">Welcome back</CardTitle>
         <CardDescription>

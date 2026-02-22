@@ -50,7 +50,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
   if (loading || !order) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#e5dfda] border-t-[#1a1615]" />
       </div>
     );
   }
@@ -62,7 +62,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
       <Button
         variant="ghost"
         onClick={() => router.back()}
-        className="mb-4 gap-2 text-zinc-400 hover:text-white"
+        className="mb-4 gap-2 text-[#757170] hover:text-[#1a1615]"
       >
         <ArrowLeft className="h-4 w-4" />
         Back
@@ -71,8 +71,8 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
       {/* Header */}
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">{order.product_briefs?.title}</h1>
-          <div className="mt-1 flex items-center gap-2 text-sm text-zinc-400">
+          <h1 className="text-2xl font-bold text-[#1a1615]">{order.product_briefs?.title}</h1>
+          <div className="mt-1 flex items-center gap-2 text-sm text-[#757170]">
             <span>{order.manufacturers?.business_name}</span>
             {order.manufacturers?.verification_status === "verified" && (
               <CheckCircle className="h-3 w-3 text-blue-400" />
@@ -84,24 +84,24 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
 
       {/* Order Summary */}
       <div className="mb-6 grid gap-4 md:grid-cols-3">
-        <Card className="border-white/10 bg-white/5 p-4">
-          <p className="text-sm text-zinc-500">Total Amount</p>
-          <p className="text-2xl font-bold text-white">${order.total_amount?.toLocaleString()}</p>
+        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+          <p className="text-sm text-[#757170]">Total Amount</p>
+          <p className="text-2xl font-bold text-[#1a1615]">${order.total_amount?.toLocaleString()}</p>
         </Card>
-        <Card className="border-white/10 bg-white/5 p-4">
-          <p className="text-sm text-zinc-500">Quantity</p>
-          <p className="text-2xl font-bold text-white">{order.quantity} units</p>
-          <p className="text-xs text-zinc-500">${order.unit_price}/unit</p>
+        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+          <p className="text-sm text-[#757170]">Quantity</p>
+          <p className="text-2xl font-bold text-[#1a1615]">{order.quantity} units</p>
+          <p className="text-xs text-[#757170]">${order.unit_price}/unit</p>
         </Card>
-        <Card className="border-white/10 bg-white/5 p-4">
-          <p className="text-sm text-zinc-500">Escrow</p>
-          <p className="text-2xl font-bold text-white capitalize">{order.escrow_status?.replace(/_/g, " ")}</p>
+        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+          <p className="text-sm text-[#757170]">Escrow</p>
+          <p className="text-2xl font-bold text-[#1a1615] capitalize">{order.escrow_status?.replace(/_/g, " ")}</p>
         </Card>
       </div>
 
       {/* Timeline */}
-      <Card className="mb-6 border-white/10 bg-white/5 p-6">
-        <h2 className="mb-4 text-lg font-semibold text-white">Order Timeline</h2>
+      <Card className="mb-6 border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-6">
+        <h2 className="mb-4 text-lg font-semibold text-[#1a1615]">Order Timeline</h2>
         <div className="space-y-0">
           {order.timeline && order.timeline.map((event, i) => (
             <div key={i} className="flex gap-4">
@@ -110,13 +110,13 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
                   <CheckCircle className="h-4 w-4 text-green-400" />
                 </div>
                 {i < order.timeline.length - 1 && (
-                  <div className="h-12 w-px bg-white/10" />
+                  <div className="h-12 w-px bg-[#e5dfda]" />
                 )}
               </div>
               <div className="pb-8">
-                <p className="font-medium text-white">{event.status}</p>
-                <p className="text-sm text-zinc-400">{event.note}</p>
-                <p className="text-xs text-zinc-500">
+                <p className="font-medium text-[#1a1615]">{event.status}</p>
+                <p className="text-sm text-[#757170]">{event.note}</p>
+                <p className="text-xs text-[#757170]">
                   {new Date(event.timestamp).toLocaleString()}
                 </p>
               </div>
@@ -130,22 +130,22 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
             return (
               <div key={step} className="flex gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e5dfda]">
                     {step === "Shipping" ? (
-                      <Truck className="h-4 w-4 text-zinc-600" />
+                      <Truck className="h-4 w-4 text-[#757170]" />
                     ) : step === "Delivered" ? (
-                      <Package className="h-4 w-4 text-zinc-600" />
+                      <Package className="h-4 w-4 text-[#757170]" />
                     ) : (
-                      <CheckCircle className="h-4 w-4 text-zinc-600" />
+                      <CheckCircle className="h-4 w-4 text-[#757170]" />
                     )}
                   </div>
                   {step !== "Delivered" && (
-                    <div className="h-12 w-px bg-white/10" />
+                    <div className="h-12 w-px bg-[#e5dfda]" />
                   )}
                 </div>
                 <div className="pb-8">
-                  <p className="font-medium text-zinc-600">{step}</p>
-                  <p className="text-sm text-zinc-700">Pending</p>
+                  <p className="font-medium text-[#757170]">{step}</p>
+                  <p className="text-sm text-[#757170]">Pending</p>
                 </div>
               </div>
             );
@@ -155,22 +155,22 @@ export default function OrderDetailPage({ params }: { params: Promise<{ orderId:
 
       {/* Shipping Info */}
       {order.shipping_carrier && (
-        <Card className="border-white/10 bg-white/5 p-4">
-          <h3 className="mb-2 font-semibold text-white">Shipping Details</h3>
-          <Separator className="mb-3 bg-white/10" />
+        <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+          <h3 className="mb-2 font-semibold text-[#1a1615]">Shipping Details</h3>
+          <Separator className="mb-3 bg-[#e5dfda]" />
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-zinc-500">Carrier</span>
-              <span className="text-white">{order.shipping_carrier}</span>
+              <span className="text-[#757170]">Carrier</span>
+              <span className="text-[#1a1615]">{order.shipping_carrier}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-zinc-500">Tracking Number</span>
-              <span className="font-mono text-white">{order.tracking_number}</span>
+              <span className="text-[#757170]">Tracking Number</span>
+              <span className="font-mono text-[#1a1615]">{order.tracking_number}</span>
             </div>
             {order.estimated_delivery && (
               <div className="flex justify-between">
-                <span className="text-zinc-500">Estimated Delivery</span>
-                <span className="text-white">{new Date(order.estimated_delivery).toLocaleDateString()}</span>
+                <span className="text-[#757170]">Estimated Delivery</span>
+                <span className="text-[#1a1615]">{new Date(order.estimated_delivery).toLocaleDateString()}</span>
               </div>
             )}
           </div>

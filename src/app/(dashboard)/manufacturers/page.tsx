@@ -43,20 +43,20 @@ function ManufacturersContent() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Manufacturers</h1>
-        <p className="text-zinc-400">Browse verified manufacturers across categories</p>
+        <h1 className="text-2xl font-bold text-[#1a1615]">Manufacturers</h1>
+        <p className="text-[#757170]">Browse verified manufacturers across categories</p>
       </div>
 
       {/* Filters */}
       <div className="mb-6 flex flex-wrap gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#757170]" />
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && fetchManufacturers()}
             placeholder="Search manufacturers..."
-            className="border-white/10 bg-white/5 pl-9 text-white placeholder:text-zinc-600"
+            className="border-[#e5dfda] bg-white pl-9 text-[#1a1615] placeholder:text-[#757170]"
           />
         </div>
         <div className="flex gap-2">
@@ -66,7 +66,7 @@ function ManufacturersContent() {
               variant={category === cat.value ? "default" : "outline"}
               size="sm"
               onClick={() => setCategory(cat.value)}
-              className={category === cat.value ? "" : "border-white/10 text-zinc-400 hover:bg-white/10"}
+              className={category === cat.value ? "bg-[#1a1615] text-white hover:bg-[#453f3d]" : "border-[#e5dfda] text-[#757170] hover:bg-[#f4f1ee]"}
             >
               {cat.label}
             </Button>
@@ -78,7 +78,7 @@ function ManufacturersContent() {
       {loading ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-48 animate-pulse rounded-xl bg-white/5" />
+            <div key={i} className="h-48 animate-pulse rounded-xl bg-white" />
           ))}
         </div>
       ) : (
@@ -87,27 +87,27 @@ function ManufacturersContent() {
             <Card
               key={mfg.id}
               onClick={() => router.push(`/manufacturers/${mfg.slug}`)}
-              className="cursor-pointer border-white/10 bg-white/5 p-5 transition-colors hover:border-white/20 hover:bg-white/10"
+              className="cursor-pointer border-[#e5dfda] bg-white p-5 shadow-[0_4px_50px_#614a440f] transition-colors hover:border-[#e5dfda] hover:bg-[#f4f1ee]"
             >
               <div className="mb-3 flex items-start justify-between">
                 <div>
-                  <h3 className="font-semibold text-white">{mfg.business_name}</h3>
-                  <p className="text-sm text-zinc-500">{mfg.location_city}, {mfg.location_country}</p>
+                  <h3 className="font-semibold text-[#1a1615]">{mfg.business_name}</h3>
+                  <p className="text-sm text-[#757170]">{mfg.location_city}, {mfg.location_country}</p>
                 </div>
                 {mfg.verification_status === "verified" && (
                   <CheckCircle className="h-5 w-5 shrink-0 text-blue-400" />
                 )}
               </div>
 
-              <p className="mb-3 line-clamp-2 text-sm text-zinc-400">{mfg.description}</p>
+              <p className="mb-3 line-clamp-2 text-sm text-[#757170]">{mfg.description}</p>
 
               <div className="mb-3 flex items-center gap-3 text-sm">
                 <span className="flex items-center gap-1 text-yellow-400">
                   <Star className="h-4 w-4 fill-current" />
                   {Number(mfg.composite_rating).toFixed(1)}
                 </span>
-                <span className="text-zinc-500">{mfg.total_reviews} reviews</span>
-                <span className="flex items-center gap-1 text-zinc-500">
+                <span className="text-[#757170]">{mfg.total_reviews} reviews</span>
+                <span className="flex items-center gap-1 text-[#757170]">
                   <Clock className="h-3 w-3" />
                   {mfg.avg_response_time_hours}h
                 </span>
@@ -126,13 +126,13 @@ function ManufacturersContent() {
                 </a>
               )}
 
-              <div className="mb-2 text-xs text-zinc-500">
+              <div className="mb-2 text-xs text-[#757170]">
                 MOQ: {mfg.moq_min}–{mfg.moq_max} | Lead: {mfg.lead_time_days_min}–{mfg.lead_time_days_max} days
               </div>
 
               <div className="flex flex-wrap gap-1">
                 {mfg.categories.slice(0, 2).map((cat) => (
-                  <Badge key={cat} variant="secondary" className="bg-white/10 text-xs text-zinc-400">
+                  <Badge key={cat} variant="secondary" className="bg-[#f4f1ee] text-xs text-[#757170]">
                     {cat.replace(/_/g, " ")}
                   </Badge>
                 ))}

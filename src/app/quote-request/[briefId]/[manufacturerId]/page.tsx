@@ -93,26 +93,26 @@ export default function QuoteRequestPage({
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#757170]" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-white/10 px-6 py-4">
+    <div className="min-h-screen bg-[#f9f8f8]">
+      <header className="border-b border-[#e5dfda] bg-white px-6 py-4">
         <div className="mx-auto max-w-2xl">
-          <a href={`/matching/${briefId}`} className="text-sm text-zinc-400 hover:text-white">
+          <a href={`/matching/${briefId}`} className="text-sm text-[#757170] hover:text-[#1a1615]">
             &larr; Back to Matches
           </a>
-          <h1 className="mt-2 text-2xl font-bold text-white">Request a Quote</h1>
+          <h1 className="mt-2 text-2xl font-bold text-[#1a1615]">Request a Quote</h1>
         </div>
       </header>
 
       <main className="mx-auto max-w-2xl space-y-6 p-6">
         {/* Brief Summary with Mockup */}
         {brief && (
-          <Card className="overflow-hidden border-white/10 bg-white/5">
+          <Card className="overflow-hidden border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f]">
             {brief.ai_renderings?.length > 0 && (
               <div className="relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -129,11 +129,11 @@ export default function QuoteRequestPage({
               </div>
             )}
             <div className="p-4">
-              <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-zinc-400">Product</h3>
-              <p className="font-medium text-white">{brief.title}</p>
-              <p className="mt-1 text-sm text-zinc-400">{brief.description}</p>
+              <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-[#757170]">Product</h3>
+              <p className="font-medium text-[#1a1615]">{brief.title}</p>
+              <p className="mt-1 text-sm text-[#757170]">{brief.description}</p>
               {brief.estimated_unit_cost_min && (
-                <p className="mt-2 text-sm text-zinc-500">
+                <p className="mt-2 text-sm text-[#757170]">
                   Est. cost: ${brief.estimated_unit_cost_min}–${brief.estimated_unit_cost_max} / unit
                 </p>
               )}
@@ -143,19 +143,19 @@ export default function QuoteRequestPage({
 
         {/* Manufacturer Info */}
         {manufacturer && (
-          <Card className="border-white/10 bg-white/5 p-4">
-            <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-zinc-400">Manufacturer</h3>
+          <Card className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-4">
+            <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-[#757170]">Manufacturer</h3>
             <div className="flex items-center gap-2">
-              <p className="font-medium text-white">{manufacturer.business_name}</p>
+              <p className="font-medium text-[#1a1615]">{manufacturer.business_name}</p>
               {manufacturer.verification_status === "verified" && (
-                <CheckCircle className="h-4 w-4 text-blue-400" />
+                <CheckCircle className="h-4 w-4 text-[#156cc2]" />
               )}
               <span className="flex items-center gap-1 text-sm text-yellow-400">
                 <Star className="h-3 w-3 fill-current" />
                 {Number(manufacturer.composite_rating).toFixed(1)}
               </span>
             </div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-[#757170]">
               {manufacturer.location_city}, {manufacturer.location_country} | MOQ: {manufacturer.moq_min}–{manufacturer.moq_max}
             </p>
             {manufacturer.website_url && (
@@ -163,7 +163,7 @@ export default function QuoteRequestPage({
                 href={manufacturer.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+                className="mt-1 flex items-center gap-1 text-sm text-[#156cc2] hover:text-[#156cc2]/80"
               >
                 <Globe className="h-3 w-3" />
                 {manufacturer.website_url.replace(/^https?:\/\//, "")}
@@ -171,7 +171,7 @@ export default function QuoteRequestPage({
             )}
             <div className="mt-2 flex gap-1">
               {manufacturer.certifications?.map((cert) => (
-                <Badge key={cert} variant="secondary" className="bg-blue-500/10 text-xs text-blue-400">
+                <Badge key={cert} variant="secondary" className="bg-[#156cc2]/10 text-xs text-[#156cc2]">
                   {cert}
                 </Badge>
               ))}
@@ -181,7 +181,7 @@ export default function QuoteRequestPage({
 
         {/* Order Type Selector */}
         <div>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-400">Order Type</h3>
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#757170]">Order Type</h3>
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
@@ -189,16 +189,16 @@ export default function QuoteRequestPage({
               className={cn(
                 "flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all",
                 orderType === "sample"
-                  ? "border-blue-500 bg-blue-500/10"
-                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  ? "border-[#156cc2] bg-[#156cc2]/10"
+                  : "border-[#e5dfda] bg-white hover:border-[#e5dfda]"
               )}
             >
-              <Package className={cn("h-6 w-6", orderType === "sample" ? "text-blue-400" : "text-zinc-500")} />
+              <Package className={cn("h-6 w-6", orderType === "sample" ? "text-[#156cc2]" : "text-[#757170]")} />
               <div>
-                <p className={cn("font-medium", orderType === "sample" ? "text-white" : "text-zinc-300")}>
+                <p className={cn("font-medium", orderType === "sample" ? "text-[#1a1615]" : "text-[#453f3d]")}>
                   Sample Order
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#757170]">
                   5–10 units to test quality before bulk
                 </p>
               </div>
@@ -209,16 +209,16 @@ export default function QuoteRequestPage({
               className={cn(
                 "flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all",
                 orderType === "bulk"
-                  ? "border-blue-500 bg-blue-500/10"
-                  : "border-white/10 bg-white/5 hover:border-white/20"
+                  ? "border-[#156cc2] bg-[#156cc2]/10"
+                  : "border-[#e5dfda] bg-white hover:border-[#e5dfda]"
               )}
             >
-              <Boxes className={cn("h-6 w-6", orderType === "bulk" ? "text-blue-400" : "text-zinc-500")} />
+              <Boxes className={cn("h-6 w-6", orderType === "bulk" ? "text-[#156cc2]" : "text-[#757170]")} />
               <div>
-                <p className={cn("font-medium", orderType === "bulk" ? "text-white" : "text-zinc-300")}>
+                <p className={cn("font-medium", orderType === "bulk" ? "text-[#1a1615]" : "text-[#453f3d]")}>
                   Bulk Order
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#757170]">
                   Full production run at MOQ
                 </p>
               </div>
@@ -228,8 +228,8 @@ export default function QuoteRequestPage({
 
         {/* Sample Info Banner */}
         {orderType === "sample" && (
-          <Card className="border-blue-500/20 bg-blue-500/5 p-4">
-            <p className="text-sm text-zinc-300">
+          <Card className="border-[#156cc2]/20 bg-[#156cc2]/5 p-4">
+            <p className="text-sm text-[#453f3d]">
               Sample orders let you evaluate product quality, materials, and craftsmanship before committing to a full production run. Sample pricing is typically higher per unit but keeps your total investment low.
             </p>
           </Card>
@@ -238,7 +238,7 @@ export default function QuoteRequestPage({
         {/* Quote Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-300">
+            <label className="mb-1 block text-sm font-medium text-[#453f3d]">
               {orderType === "sample" ? "Sample Quantity" : "Quantity"} <span className="text-red-400">*</span>
             </label>
             <Input
@@ -248,9 +248,9 @@ export default function QuoteRequestPage({
               min={1}
               max={orderType === "sample" ? 20 : undefined}
               required
-              className="border-white/10 bg-white/5 text-white"
+              className="border-[#e5dfda] bg-white text-[#1a1615]"
             />
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-[#757170]">
               {orderType === "sample"
                 ? "Recommended: 5–10 units"
                 : `Minimum: ${manufacturer?.moq_min || 1} units`}
@@ -258,7 +258,7 @@ export default function QuoteRequestPage({
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-300">
+            <label className="mb-1 block text-sm font-medium text-[#453f3d]">
               Target Price per Unit (optional)
             </label>
             <Input
@@ -267,12 +267,12 @@ export default function QuoteRequestPage({
               value={targetPrice}
               onChange={(e) => setTargetPrice(e.target.value)}
               placeholder="e.g., 5.00"
-              className="border-white/10 bg-white/5 text-white placeholder:text-zinc-600"
+              className="border-[#e5dfda] bg-white text-[#1a1615] placeholder:text-[#757170]"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-300">
+            <label className="mb-1 block text-sm font-medium text-[#453f3d]">
               Additional Notes
             </label>
             <Textarea
@@ -283,7 +283,7 @@ export default function QuoteRequestPage({
                   ? "Any specific details for the sample — colors, materials to test, finish options..."
                   : "Any specific requirements, packaging needs, or questions..."
               }
-              className="border-white/10 bg-white/5 text-white placeholder:text-zinc-600"
+              className="border-[#e5dfda] bg-white text-[#1a1615] placeholder:text-[#757170]"
               rows={4}
             />
           </div>
@@ -291,7 +291,7 @@ export default function QuoteRequestPage({
           <Button
             type="submit"
             disabled={submitting || !quantity}
-            className="w-full gap-2 bg-white text-zinc-900 hover:bg-zinc-200"
+            className="w-full gap-2 bg-[#1a1615] text-white hover:bg-[#453f3d]"
           >
             {submitting ? (
               <Loader2 className="h-4 w-4 animate-spin" />

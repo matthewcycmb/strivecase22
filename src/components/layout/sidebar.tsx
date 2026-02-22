@@ -19,8 +19,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
 const navLinks = [
-  { href: "/", label: "Dashboard", icon: Home },
   { href: "/projects", label: "My Projects", icon: FolderOpen },
+  { href: "/brain-dump", label: "Brain Dump", icon: Home },
   { href: "/manufacturers", label: "Manufacturers", icon: Factory },
   { href: "/orders", label: "Orders", icon: Package },
   { href: "/quotes", label: "Quotes", icon: FileText },
@@ -42,7 +42,7 @@ export function Sidebar() {
   }
 
   return (
-    <div className="flex h-full w-64 flex-col border-r border-border/50 bg-card/50">
+    <div className="flex h-full w-64 flex-col border-r border-[#e5dfda] bg-white">
       {/* Logo */}
       <div className="flex h-16 items-center gap-3 px-6">
         <Image
@@ -53,25 +53,22 @@ export function Sidebar() {
           className="shrink-0"
         />
         <div className="flex flex-col">
-          <span className="text-lg font-bold tracking-tight text-foreground">
+          <span className="text-lg font-bold tracking-tight text-[#1a1615]">
             DeepSeek
           </span>
-          <span className="-mt-1 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+          <span className="-mt-1 text-[11px] font-medium uppercase tracking-widest text-[#757170]">
             Manufacturing
           </span>
         </div>
       </div>
 
-      <Separator className="opacity-50" />
+      <Separator className="bg-[#e5dfda]" />
 
       {/* Navigation */}
       <ScrollArea className="flex-1 px-3 py-4">
         <nav className="flex flex-col gap-1">
           {navLinks.map((link) => {
-            const isActive =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
+            const isActive = pathname.startsWith(link.href);
 
             return (
               <Link
@@ -80,16 +77,16 @@ export function Sidebar() {
                 className={cn(
                   "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
+                    ? "bg-[#f4f1ee] text-[#1a1615]"
+                    : "text-[#757170] hover:bg-[#f4f1ee] hover:text-[#1a1615]"
                 )}
               >
                 <link.icon
                   className={cn(
                     "size-4 shrink-0",
                     isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground group-hover:text-foreground"
+                      ? "text-[#1a1615]"
+                      : "text-[#757170] group-hover:text-[#1a1615]"
                   )}
                 />
                 {link.label}
@@ -99,13 +96,13 @@ export function Sidebar() {
         </nav>
       </ScrollArea>
 
-      <Separator className="opacity-50" />
+      <Separator className="bg-[#e5dfda]" />
 
       {/* Sign out */}
       <div className="p-3">
         <Button
           variant="ghost"
-          className="w-full justify-start gap-3 text-muted-foreground hover:text-foreground"
+          className="w-full justify-start gap-3 text-[#757170] hover:bg-[#f4f1ee] hover:text-[#1a1615]"
           onClick={handleSignOut}
         >
           <LogOut className="size-4" />

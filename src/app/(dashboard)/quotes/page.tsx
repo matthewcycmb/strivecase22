@@ -91,21 +91,21 @@ export default function QuotesPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Quotes</h1>
-        <p className="text-zinc-400">Manage your manufacturer quote requests</p>
+        <h1 className="text-2xl font-bold text-[#1a1615]">Quotes</h1>
+        <p className="text-[#757170]">Manage your manufacturer quote requests</p>
       </div>
 
       {loading ? (
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-32 animate-pulse rounded-xl bg-white/5" />
+            <div key={i} className="h-32 animate-pulse rounded-xl bg-[#f4f1ee]" />
           ))}
         </div>
       ) : quotes.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <FileText className="mb-4 h-16 w-16 text-zinc-700" />
-          <h2 className="mb-2 text-xl font-semibold text-white">No quotes yet</h2>
-          <p className="text-zinc-400">Match with manufacturers to request quotes</p>
+          <FileText className="mb-4 h-16 w-16 text-[#e5dfda]" />
+          <h2 className="mb-2 text-xl font-semibold text-[#1a1615]">No quotes yet</h2>
+          <p className="text-[#757170]">Match with manufacturers to request quotes</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -113,11 +113,11 @@ export default function QuotesPage() {
             const style = STATUS_STYLES[quote.status] || STATUS_STYLES.pending;
             const isSample = quote.additional_notes?.includes("[SAMPLE ORDER]") || false;
             return (
-              <Card key={quote.id} className="border-white/10 bg-white/5 p-5">
+              <Card key={quote.id} className="border-[#e5dfda] bg-white shadow-[0_4px_50px_#614a440f] p-5">
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="mb-1 flex items-center gap-2">
-                      <h3 className="font-semibold text-white">
+                      <h3 className="font-semibold text-[#1a1615]">
                         {quote.product_briefs?.title || "Untitled"}
                       </h3>
                       <Badge className={style.className}>{style.label}</Badge>
@@ -128,7 +128,7 @@ export default function QuotesPage() {
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                    <div className="flex items-center gap-2 text-sm text-[#757170]">
                       <span>{quote.manufacturers?.business_name}</span>
                       {quote.manufacturers?.verification_status === "verified" && (
                         <CheckCircle className="h-3 w-3 text-blue-400" />
@@ -145,16 +145,16 @@ export default function QuotesPage() {
                         </a>
                       )}
                     </div>
-                    <p className="mt-1 text-sm text-zinc-500">
+                    <p className="mt-1 text-sm text-[#757170]">
                       Qty: {quote.quantity_requested} units | Requested: {new Date(quote.created_at).toLocaleDateString()}
                     </p>
                   </div>
 
                   {quote.status === "responded" && quote.unit_price && (
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-white">${quote.unit_price}</p>
-                      <p className="text-xs text-zinc-500">per unit</p>
-                      <p className="text-sm font-medium text-zinc-300">
+                      <p className="text-2xl font-bold text-[#1a1615]">${quote.unit_price}</p>
+                      <p className="text-xs text-[#757170]">per unit</p>
+                      <p className="text-sm font-medium text-[#453f3d]">
                         Total: ${quote.total_price?.toLocaleString()}
                       </p>
                     </div>
@@ -162,10 +162,10 @@ export default function QuotesPage() {
                 </div>
 
                 {quote.status === "responded" && quote.response_notes && (
-                  <div className="mt-3 rounded-lg bg-white/5 p-3">
-                    <p className="text-sm text-zinc-300">{quote.response_notes}</p>
+                  <div className="mt-3 rounded-lg bg-[#f4f1ee] p-3">
+                    <p className="text-sm text-[#453f3d]">{quote.response_notes}</p>
                     {quote.estimated_lead_time_days && (
-                      <p className="mt-1 flex items-center gap-1 text-xs text-zinc-500">
+                      <p className="mt-1 flex items-center gap-1 text-xs text-[#757170]">
                         <Clock className="h-3 w-3" />
                         Estimated lead time: {quote.estimated_lead_time_days} days
                       </p>
@@ -185,7 +185,7 @@ export default function QuotesPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-white/10 text-zinc-400"
+                      className="border-[#e5dfda] text-[#757170]"
                     >
                       Decline
                     </Button>
