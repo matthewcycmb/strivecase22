@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, CheckCircle, Clock, Search } from "lucide-react";
+import { Star, CheckCircle, Clock, Search, Globe } from "lucide-react";
 import type { Manufacturer } from "@/lib/types";
 
 const CATEGORIES = [
@@ -112,6 +112,19 @@ function ManufacturersContent() {
                   {mfg.avg_response_time_hours}h
                 </span>
               </div>
+
+              {mfg.website_url && (
+                <a
+                  href={mfg.website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="mb-2 flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
+                >
+                  <Globe className="h-3 w-3" />
+                  {mfg.website_url.replace(/^https?:\/\//, "")}
+                </a>
+              )}
 
               <div className="mb-2 text-xs text-zinc-500">
                 MOQ: {mfg.moq_min}–{mfg.moq_max} | Lead: {mfg.lead_time_days_min}–{mfg.lead_time_days_max} days

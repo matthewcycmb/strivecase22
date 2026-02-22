@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Send, CheckCircle, Star, Package, Boxes } from "lucide-react";
+import { Loader2, Send, CheckCircle, Star, Package, Boxes, Globe } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -158,6 +158,17 @@ export default function QuoteRequestPage({
             <p className="text-sm text-zinc-400">
               {manufacturer.location_city}, {manufacturer.location_country} | MOQ: {manufacturer.moq_min}–{manufacturer.moq_max}
             </p>
+            {manufacturer.website_url && (
+              <a
+                href={manufacturer.website_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300"
+              >
+                <Globe className="h-3 w-3" />
+                {manufacturer.website_url.replace(/^https?:\/\//, "")}
+              </a>
+            )}
             <div className="mt-2 flex gap-1">
               {manufacturer.certifications?.map((cert) => (
                 <Badge key={cert} variant="secondary" className="bg-blue-500/10 text-xs text-blue-400">

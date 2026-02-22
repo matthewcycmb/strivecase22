@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Clock, FileText, Package } from "lucide-react";
+import { CheckCircle, Clock, FileText, Globe, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
@@ -21,7 +21,7 @@ interface QuoteWithRelations {
   additional_notes: string | null;
   status: string;
   created_at: string;
-  manufacturers: { business_name: string; verification_status: string } | null;
+  manufacturers: { business_name: string; verification_status: string; website_url: string | null } | null;
   product_briefs: { title: string } | null;
 }
 
@@ -132,6 +132,17 @@ export default function QuotesPage() {
                       <span>{quote.manufacturers?.business_name}</span>
                       {quote.manufacturers?.verification_status === "verified" && (
                         <CheckCircle className="h-3 w-3 text-blue-400" />
+                      )}
+                      {quote.manufacturers?.website_url && (
+                        <a
+                          href={quote.manufacturers.website_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-blue-400 hover:text-blue-300"
+                        >
+                          <Globe className="h-3 w-3" />
+                          <span className="underline">Website</span>
+                        </a>
                       )}
                     </div>
                     <p className="mt-1 text-sm text-zinc-500">

@@ -11,6 +11,7 @@ import {
   Star,
   CheckCircle,
   Clock,
+  Globe,
   ArrowRight,
   FileText,
   Factory,
@@ -162,7 +163,7 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                     )}
                   </div>
 
-                  <div className="mb-3 flex items-center gap-4 text-sm text-zinc-400">
+                  <div className="mb-3 flex flex-wrap items-center gap-4 text-sm text-zinc-400">
                     <span className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                       {Number(mfg.composite_rating).toFixed(1)}
@@ -173,6 +174,17 @@ export default function MatchingPage({ params }: { params: Promise<{ briefId: st
                       {mfg.avg_response_time_hours}h response
                     </span>
                     <span>MOQ: {mfg.moq_min}–{mfg.moq_max}</span>
+                    {mfg.website_url && (
+                      <a
+                        href={mfg.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-blue-400 hover:text-blue-300"
+                      >
+                        <Globe className="h-3 w-3" />
+                        Website
+                      </a>
+                    )}
                   </div>
 
                   {/* Scoring Breakdown */}
